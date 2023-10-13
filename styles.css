@@ -9,3 +9,94 @@ html {
   padding: 0;
   margin: 0;
 }
+body {
+  width: 100dvw;
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+}
+.calculator-body {
+  width: 600px;
+  height: 700px;
+
+  background-color: black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90dvw;
+  max-height: 90dvh;
+}
+.calculator-body > h1 {
+  font-size: 15px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+}
+.calculator-screen {
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  font-family: "M PLUS Code Latin", monospace;
+  font-size: 50px;
+  background-color: gray;
+  color: white;
+}
+.calculator-buttons {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: red; */
+  gap: 5px;
+}
+.calculator-buttons > div {
+  /* background-color: green; */
+  flex: 1;
+
+  display: flex;
+  gap: 5px;
+}
+
+.calculator-buttons > div > button {
+  flex: 1;
+
+  border-radius: 5px;
+
+  font-size: 40px;
+}
+.calculator-buttons > div > button:hover {
+  filter: brightness(110%);
+}
+.divide {
+  font-size: 100px;
+  background-color: red;
+}
+.multiply {
+  background-color: greenyellow;
+}
+.minus {
+  background-color: aqua;
+}
+.plus {
+  background-color: wheat;
+}
+.equals {
+  background-color: slateblue;
+}
+.ac {
+  background-color: hotpink;
+}
+.c {
+  background-color: lavenderblush;
+}
