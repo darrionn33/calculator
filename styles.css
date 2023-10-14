@@ -28,8 +28,8 @@ body {
 
   padding: 20px;
   border-radius: 10px;
-  max-width: 90dvw;
-  max-height: 90dvh;
+  max-width: 100dvw;
+  max-height: 100dvh;
 }
 .calculator-body > h1 {
   font-size: 15px;
@@ -100,4 +100,10 @@ body {
 }
 .c {
   background-color: lavenderblush;
+}
+
+@media screen and (max-width: 400px) {
+  .calculator-body {
+    border-radius: 0;
+  }
 }
