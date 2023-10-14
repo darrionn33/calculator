@@ -38,6 +38,7 @@ body {
   margin-bottom: 10px;
 }
 .calculator-screen {
+  overflow: hidden;
   margin-bottom: 20px;
   padding: 5px;
   width: 100%;
