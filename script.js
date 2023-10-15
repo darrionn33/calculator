@@ -77,7 +77,7 @@ buttons.forEach((button) =>
               }
             });
           let operands = calculatorDisplayArray.join("").split(/[-+÷x]+/);
-          let total = operate(operators[0], operands[0], operands[1]);
+          let total = operate(operators[0], +operands[0], +operands[1]);
           calculatorDisplayArray.length = 0;
           updateDisplayArray({ total: total });
           break;
