@@ -28,8 +28,13 @@ buttons.forEach((button) =>
         updateDisplayArray();
         break;
       case "c":
-        calculatorDisplayArray.pop();
-        updateDisplayArray();
+        if (calculatorDisplayArray.length === 1) {
+          calculatorDisplayArray[0] = 0;
+          updateDisplayArray();
+        } else {
+          calculatorDisplayArray.pop();
+          updateDisplayArray(0);
+        }
         break;
       default:
         updateDisplayArray(input);
