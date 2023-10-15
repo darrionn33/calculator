@@ -16,8 +16,15 @@ const multiply = (a, b) => {
 const divide = (a, b) => {
   return a / b;
 };
+
+const operatorObject = {
+  add: add,
+  substract: substract,
+  multiply: multiply,
+  divide: divide,
+};
 const operate = (operator, a, b) => {
-  return operator(a, b);
+  return operatorObject[operator](a, b);
 };
 
 let isInitialising = true;
@@ -51,6 +58,20 @@ buttons.forEach((button) =>
           calculatorDisplayArray.pop();
           updateDisplayArray(0);
         }
+        break;
+      case "equals":
+        let operators = calculatorDisplayArray
+          .join("")
+          .split(/[0-9]+/)
+          .filter((operator) => {
+            if (operator !== " ") {
+              return operator;
+            }
+          });
+        let operands = calculatorDisplayArray.join("").split(/[a-z]+/);
+        console.log(operators[0]);
+        console.log(operands);
+        console.log(operate(operators[0], operands[0], operands[1]));
         break;
       default:
         updateDisplayArray(input);
