@@ -18,10 +18,10 @@ const divide = (a, b) => {
 };
 
 const operatorObject = {
-  add: add,
-  substract: substract,
-  multiply: multiply,
-  divide: divide,
+  "+": add,
+  "-": substract,
+  x: multiply,
+  "÷": divide,
 };
 const operate = (operator, a, b) => {
   return operatorObject[operator](a, b);
@@ -34,7 +34,12 @@ const updateDisplayArray = (item) => {
       calculatorDisplayArray[0] = item;
       isInitialising = false;
     } else {
-      calculatorDisplayArray.push(item);
+      if (typeof item === "object") {
+        calculatorDisplayArray[0] = item.total;
+        isInitialising = true;
+      } else {
+        calculatorDisplayArray.push(item);
+      }
     }
   }
   calculatorScreen.textContent = calculatorDisplayArray.join("");
@@ -43,39 +48,43 @@ const updateDisplayArray = (item) => {
 buttons.forEach((button) =>
   button.addEventListener("click", (e) => {
     let input = e.target.value;
-    switch (input) {
-      case "ac":
-        calculatorDisplayArray.length = 0;
-        calculatorDisplayArray[0] = 0;
-        isInitialising = true;
-        updateDisplayArray();
-        break;
-      case "c":
-        if (calculatorDisplayArray.length === 1) {
+    if (isFinite(+input)) {
+      updateDisplayArray(+input);
+    } else {
+      switch (input) {
+        case "ac":
+          calculatorDisplayArray.length = 0;
           calculatorDisplayArray[0] = 0;
+          isInitialising = true;
           updateDisplayArray();
-        } else {
-          calculatorDisplayArray.pop();
-          updateDisplayArray(0);
-        }
-        break;
-      case "equals":
-        let operators = calculatorDisplayArray
-          .join("")
-          .split(/[0-9]+/)
-          .filter((operator) => {
-            if (operator !== " ") {
-              return operator;
-            }
-          });
-        let operands = calculatorDisplayArray.join("").split(/[a-z]+/);
-        console.log(operators[0]);
-        console.log(operands);
-        console.log(operate(operators[0], operands[0], operands[1]));
-        break;
-      default:
-        updateDisplayArray(input);
-        break;
+          break;
+        case "c":
+          if (calculatorDisplayArray.length === 1) {
+            calculatorDisplayArray[0] = 0;
+            updateDisplayArray();
+          } else {
+            calculatorDisplayArray.pop();
+            updateDisplayArray(0);
+          }
+          break;
+        case "equals":
+          let operators = calculatorDisplayArray
+            .join("")
+            .split(/[0-9]+/)
+            .filter((operator) => {
+              if (operator !== " ") {
+                return operator;
+              }
+            });
+          let operands = calculatorDisplayArray.join("").split(/[-+÷x]+/);
+          let total = operate(operators[0], operands[0], operands[1]);
+          calculatorDisplayArray.length = 0;
+          updateDisplayArray({ total: total });
+          break;
+        default:
+          updateDisplayArray(input);
+          break;
+      }
     }
   })
 );
