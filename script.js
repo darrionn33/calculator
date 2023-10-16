@@ -35,7 +35,11 @@ const updateDisplayArray = (item) => {
       isInitialising = false;
     } else {
       if (typeof item === "object") {
-        calculatorDisplayArray[0] = item.total;
+        if (item.total === Infinity || item.total === -Infinity) {
+          calculatorDisplayArray[0] = "ERROR: can't divide by 0.";
+        } else {
+          calculatorDisplayArray[0] = item.total;
+        }
         isInitialising = true;
       } else {
         if (calculatorDisplayArray[0] !== 0) {
