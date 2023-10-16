@@ -29,7 +29,7 @@ const operate = (operator, a, b) => {
 
 let isInitialising = true;
 const updateDisplayArray = (item) => {
-  if (item) {
+  if (item !== undefined) {
     if (isInitialising) {
       calculatorDisplayArray[0] = item;
       isInitialising = false;
