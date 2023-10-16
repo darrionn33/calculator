@@ -38,7 +38,9 @@ const updateDisplayArray = (item) => {
         calculatorDisplayArray[0] = item.total;
         isInitialising = true;
       } else {
-        calculatorDisplayArray.push(item);
+        if (calculatorDisplayArray[0] !== 0) {
+          calculatorDisplayArray.push(item);
+        }
       }
     }
   }
