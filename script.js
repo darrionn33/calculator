@@ -44,6 +44,22 @@ const updateDisplayArray = (item) => {
   }
   calculatorScreen.textContent = calculatorDisplayArray.join("");
 };
+const findResult = (numArr, opArr) => {
+  let result;
+
+  for (let i = 0; i < numArr.length - 1; i++) {
+    if (result !== undefined) {
+      let secondNum = numArr[i + 1];
+      let oldResult = result;
+      result = operate(opArr[i], +oldResult, +secondNum);
+    } else {
+      let firstNum = numArr[i];
+      let secondNum = numArr[i + 1];
+      result = operate(opArr[i], +firstNum, +secondNum);
+    }
+  }
+  return result;
+};
 
 buttons.forEach((button) =>
   button.addEventListener("click", (e) => {
@@ -77,7 +93,7 @@ buttons.forEach((button) =>
               }
             });
           let operands = calculatorDisplayArray.join("").split(/[-+÷x]+/);
-          let total = operate(operators[0], +operands[0], +operands[1]);
+          let total = findResult(operands, operators);
           calculatorDisplayArray.length = 0;
           updateDisplayArray({ total: total });
           break;
