@@ -83,10 +83,11 @@ buttons.forEach((button) =>
         case "c":
           if (calculatorDisplayArray.length === 1) {
             calculatorDisplayArray[0] = 0;
+            isInitialising = true;
             updateDisplayArray();
           } else {
             calculatorDisplayArray.pop();
-            updateDisplayArray(0);
+            updateDisplayArray();
           }
           break;
         case "equals":
