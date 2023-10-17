@@ -111,3 +111,61 @@ buttons.forEach((button) =>
     }
   })
 );
+window.addEventListener("keydown", (e) => {
+  switch (e.key) {
+    case "0":
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9":
+      updateDisplayArray(+e.key);
+      break;
+    case "+":
+    case "-":
+      updateDisplayArray(e.key);
+      break;
+    case "/":
+      updateDisplayArray("÷");
+      break;
+    case "*":
+      updateDisplayArray("x");
+      break;
+    case "Backspace":
+      if (e.shiftKey) {
+        calculatorDisplayArray.length = 0;
+        calculatorDisplayArray[0] = 0;
+        isInitialising = true;
+        updateDisplayArray();
+      } else {
+        if (calculatorDisplayArray.length === 1) {
+          calculatorDisplayArray[0] = 0;
+          isInitialising = true;
+          updateDisplayArray();
+        } else {
+          calculatorDisplayArray.pop();
+          updateDisplayArray();
+        }
+      }
+      break;
+    case "=":
+    case "Enter":
+      let operators = calculatorDisplayArray
+        .join("")
+        .split(/[0-9]+/)
+        .filter((operator) => {
+          if (operator !== " ") {
+            return operator;
+          }
+        });
+      let operands = calculatorDisplayArray.join("").split(/[-+÷x]+/);
+      let total = findResult(operands, operators);
+      calculatorDisplayArray.length = 0;
+      updateDisplayArray({ total: total });
+      break;
+  }
+});
