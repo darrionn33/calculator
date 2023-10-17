@@ -14,7 +14,8 @@ const multiply = (a, b) => {
   return a * b;
 };
 const divide = (a, b) => {
-  return a / b;
+  let quotient = Math.round((+a / +b) * 100) / 100;
+  return quotient;
 };
 
 const operatorObject = {
